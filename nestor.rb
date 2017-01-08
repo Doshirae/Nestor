@@ -46,7 +46,14 @@ end
 # Commande dtc {{{
 bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou une au hasard", usage: 'dtc [numéro_quote]')  do |event, num_quote|
 	if num_quote
-		"http://danstonchat.com/#{num_quote}.html"
+		# File.open("latestQuote.txt", 'r') do |file,latestQuote| 
+		# 	latestQuote = file.gets
+		# end
+		# if num_quote <= latestQuote
+			"http://danstonchat.com/#{num_quote}.html"
+		# else
+		# 	"La quote existe pas fdp"
+		# end
 	else
 		mechanize = Mechanize.new
 		page = mechanize.get('http://danstonchat.com/latest.html')
@@ -54,6 +61,7 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 		latestQuote = link.click
 		url = latestQuote.uri.to_s.split('') #  transform the url into a string, and then into an array
 		latestQuoteNumber = url.grep(/\d+/).join.to_i # grep digits into that array (\d means [0-9]), join it into a string, and make that an integer
+		File.open("latestQuote.txt", 'w') {|file| file.write(latestQuoteNumber) }
 		random = rand(1..latestQuoteNumber)
 		"http://danstonchat.com/#{random}.html"
 	end
