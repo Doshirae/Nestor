@@ -1,0 +1,10 @@
+# Fonctionnalités à ajouter
+
+- Finir la v2 de DTC
+- Finir poke
+- Coder la fonctionnalité musique de Bonobot
+- Partager une musique random de mon répertoire
+  (soit juste le texte, soit un lien youtube)
+  Et permettre la création d'une base de donnée de morceau à passer
+- un votekick, ça se fait ?
+- dire "Commande inconnue" si on fait une commande qui n'existe pas
