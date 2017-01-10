@@ -125,10 +125,6 @@ bot.message(containing: /Aladin/i) do |event|
 	event.respond "TOUT L'MONDE DIT LE PRINCE !"
 end
 
-bot.message(containing: /Nestor/i) do |event|
-	event.respond "Plait-il ?"
-end
-
 bot.message(containing: /Mi+chel/i) do |event|
 	event.respond "Oui, c'est moi"
 	sleep(15)
