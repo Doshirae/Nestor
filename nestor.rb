@@ -39,7 +39,7 @@ bot.command :ping do |event|
 	# The `respond` method returns a `Message` object, which is stored in a variable `m`. The `edit` method is then called
 	# to edit the message with the time difference between when the event was received and after the message was sent.
 	m = event.respond('Pong!')
-	m.edit "Pong! Time taken: #{Time.now - event.timestamp} seconds."
+	m.edit "Pong! `#{(Time.now - event.timestamp).round(2)}s`"
 end
 # }}}
 

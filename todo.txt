@@ -7,3 +7,4 @@
   (soit juste le texte, soit un lien youtube)
   Et permettre la création d'une base de donnée de morceau à passer
 - dire "Commande inconnue" si on fait une commande qui n'existe pas
+- si le message se finit par un "?" et qu'il se déroule x secondes (à déterminer), envoie un tumbleweed sur le chat
