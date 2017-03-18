@@ -7,7 +7,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'configatron'
 require_relative 'config.rb'
-require_relative '../insultotron.rb'
+require_relative 'insultotron.rb'
 
 # This statement creates a bot with the specified token and application ID. After this line, you can add events to the
 # created bot, and eventually run it.
@@ -129,7 +129,10 @@ end
 # }}}
 
 # insulte {{{
-	`ruby ../insultotron.rb`
+bot.command(:insulte, description: "Renvoie une insulte générée")  do |event|
+	insulte = Insulte.new()
+	event.respond(insulte.dire())
+end
 # }}}
 
 # Réponses aux messages {{{
