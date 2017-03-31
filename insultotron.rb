@@ -1,6 +1,6 @@
 class Insulte
 	def initialize()
-		@insulte = "Espèce d#{animal} #{adjectif} #{lieu}"
+		@insulte = "Espece d#{animal} #{adjectif} #{lieu}"
 	end
 
 	def dire
@@ -9,21 +9,26 @@ class Insulte
 
 	def animal
 		animaux = [
-			"e Végéta",
-			"UNDEFINED",
+			"e Vegeta",
 			"e renard",
 			"e poulpe",
 			"e caribou",
-			"e chouette",
 			"'ornythorinque",
 			"e papier toilette",
-			"e zombie nécrophage",
-			"e vélocipède",
+			"e zombie necrophage",
+			"e velocipede",
 			"e castor",
 			"e mamouth a poil ras",
 			"e mamouth",
 			"'huitre",
-			"e joueur de LoL"
+			"e joueur de LoL",
+			"e sale tchoin",
+			"e VACA DE LA SOLIDAD",
+			"'enorme bachibouzouk",
+			"'ectoplasme",
+			"e marin d'eau douce",
+			"e va-nu-pieds"
+
 		]
 		return animaux[rand(animaux.size)]
 	end
@@ -34,14 +39,15 @@ class Insulte
 			"barbu",
 			"roux",
 			"psychopathe",
-			"reconditioné",
+			"reconditione",
 			"chauve",
-			"shooté à l'Ibuprofene®",
+			"shoote à l'Ibuprofene®",
 			"nucléairement con",
 			"mangeur de mamouths",
 			"manchot",
 			"pyroclastique",
-			"associal"
+			"associal",
+			"incapable"
 		]
 		return adjs[rand(adjs.size)]
 	end
@@ -53,15 +59,16 @@ class Insulte
 			"des galapagos",
 			"australien",
 			"de ta soeur",
-			"sumérien",
+			"sumerien",
 			"grec",
 			"de l'espace",
 			"du Zimbabwe",
 			"italien",
 			"des antilles",
-			"numériquement à la ramasse"
+			"numeriquement a la ramasse",
+			"DE LA MADRE MIA AYAYAYA",
+			"DEL FUEGO DE PAPEL"
 		]
 		return lieus[rand(lieus.size)]
 	end
-
 end

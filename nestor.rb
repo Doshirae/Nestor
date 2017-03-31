@@ -129,9 +129,16 @@ end
 # }}}
 
 # insulte {{{
-bot.command(:insulte, description: "Renvoie une insulte générée")  do |event|
+bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, mode|
 	insulte = Insulte.new()
-	event.respond(insulte.dire())
+	case mode
+	when "fort"
+		event.respond(insulte.dire().upcase)
+	when "kaaris"
+		event.respond("P#{"U"*rand(10..100)}TE#{"U"*rand(10..100)}H")
+	else
+		event.respond(insulte.dire())
+	end
 end
 # }}}
 
