@@ -135,7 +135,14 @@ bot.command(:insulte, description: "Renvoie une insulte générée")  do |event,
 	when "fort"
 		event.respond(insulte.dire().upcase)
 	when "kaaris"
-		event.respond("P#{"U"*rand(10..100)}TE#{"U"*rand(10..100)}H")
+		event.respond("P#{"U"*rand(10..100)}T#{"E"*rand(3..20)}#{"U"*rand(10..100)}H")
+	when "martine"
+		salope = "SALO"
+		rand(25..100).times do |jsp|
+			salope += (rand(0..1) %2 == 0) ? "o" : "O"
+		end
+		salope += "PE"
+		event.respond(salope)
 	else
 		event.respond(insulte.dire())
 	end
