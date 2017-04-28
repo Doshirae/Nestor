@@ -185,14 +185,14 @@ end
 # }}}
 
 # Eval command that allows to paste code directly in the channel
-# bot.command(:eval, help_available: false) do |event, *code|
-# 	break unless event.user.id == 66237334693085184 # Replace number with my ID
-# 	begin
-# 		eval code.join(' ')
-# 	rescue
-# 		'An error occurred 😞'
-# 	end
-# end
+bot.command(:eval, help_available: false) do |event, *code|
+	break unless event.user.id == 307626361626034177 # Replace number with my ID
+	begin
+		eval code.join(' ')
+	rescue
+		'An error occurred 😞'
+	end
+end
 
 # command taht mention
 # bot.mention do |event|
