@@ -186,7 +186,7 @@ end
 
 # Eval command that allows to paste code directly in the channel
 bot.command(:eval, help_available: false) do |event, *code|
-	break unless event.user.id == 307626361626034177 # Replace number with my ID
+	# break unless event.user.id == 307629792126304276  # Replace number with my ID
 	begin
 		eval code.join(' ')
 	rescue
