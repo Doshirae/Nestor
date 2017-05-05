@@ -116,7 +116,7 @@ class Main
 	def temps(jaugeVoulue)
 		bonusParFrottement = @objet.efficacite + @drago.bonus(objet.resistance)
 		bonusParMinute = bonusParFrottement * @frequence
-		differenceNiveaux = (@drago.nivCourantJauge - jaugeVoulue).abs
+		differenceNiveaux = (@drago.nivCourantJauge - jaugeVoulue.to_i).abs
 		tempsMinute = (differenceNiveaux / bonusParMinute).round
 		tempsSeconde = tempsMinute*60
 
