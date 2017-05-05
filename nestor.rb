@@ -152,7 +152,10 @@ end
 
 # dragodinde ==>
 bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup d'une dd", usage: "dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]")  do |event, couleur, fatigue, jaugeCourant, jaugeVoulue|
-	dd = Dragodinde.new(couleur, fatigue, jaugeCourant, jaugeVoulue)
+	drago = Dragodinde.new(couleur, fatigue, jaugeCourant)
+	objet = Objet.new
+	main = Main.new(drago, objet)
+	event.respond("#{main.temps(jaugeVoulue)}")
 end
 # <==
 
@@ -186,16 +189,6 @@ bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
 	event.respond "Oui monsieur, bien monsieur, je pars me flageller monsieur"
 end
 # }}}
-
-# Eval command that allows to paste code directly in the channel
-bot.command(:eval, help_available: false) do |event, *code|
-	# break unless event.user.id == 307629792126304276  # Replace number with my ID
-	begin
-		eval code.join(' ')
-	rescue
-		'An error occurred 😞'
-	end
-end
 
 # command taht mention
 # bot.mention do |event|
