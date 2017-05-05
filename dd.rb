@@ -5,47 +5,8 @@
 # Les items ont une résistance et une efficacité (600 et 30 pour les enclos publics)
 # La fréquence temporaire calculée à l'arrache des enclos publics = 2 frottement / min
 
-
-class Dragodinde
-	attr_accessor :nivCourantJauge, :coefLearn, :bonusFatigue
-
-	def initialize(coefLearn, nivCourantJauge, fatigue)
-		@nivCourantJauge = nivCourantJauge
-		@coefLearn = coefLearn
-		@bonusFatigue = case fatigue
-						when 0..160 then 100/100
-						when 161..170 then 115/100
-						when 171..180 then 130/100
-						when 181..190 then 150/100
-						when 191..200 then 150/100
-						when 201..210 then 180/100
-						when 211..220 then 210/100
-						when 221..230 then 250/100
-						when 231..239 then 300/100
-						when 240 then 0
-						end
-	end
-
-	def bonus(resistanceObjet)
-		return (0.01 * resistanceObjet * @coefLearn * @bonusFatigue)
-	end
-
-end
-
-class Objet
-	attr_accessor :resistance, :efficacite
-
-	def initialize(resistance=600, efficacite=30)
-		@resistance = resistance
-		@efficacite = efficacite
-	end
-end
-
-# Main ---------------------------------------------------------------------------------------------------
-
-FREQUENCE = 2 # par minute, ndlr
 # Coefficients d'apprentissage des dd ==>
-coefDD = {
+$coefDD = {
 	"rousse" => 1,
 	"amande" => 1,
 	"indigo" => 0.8,
@@ -108,23 +69,62 @@ coefDD = {
 }
 # <==
 
+class Dragodinde
+	attr_accessor :nivCourantJauge, :coefLearn, :bonusFatigue
+
+	def initialize(couleur, nivCourantJauge, fatigue)
+		@nivCourantJauge = nivCourantJauge
+		@coefLearn = $coefDD[couleur]
+		@bonusFatigue = case fatigue
+						when 0..160 then 100/100
+						when 161..170 then 115/100
+						when 171..180 then 130/100
+						when 181..190 then 150/100
+						when 191..200 then 150/100
+						when 201..210 then 180/100
+						when 211..220 then 210/100
+						when 221..230 then 250/100
+						when 231..239 then 300/100
+						when 240 then 0
+						end
+	end
+
+	def bonus(resistanceObjet)
+		return (0.01 * resistanceObjet * @coefLearn * @bonusFatigue)
+	end
+
+end
+
+class Objet
+	attr_accessor :resistance, :efficacite
+
+	def initialize(resistance=600, efficacite=30)
+		@resistance = resistance
+		@efficacite = efficacite
+	end
+end
+
+# Main ---------------------------------------------------------------------------------------------------
+
+FREQUENCE = 2 # par minute, ndlr
+
 if ARGV[0] == 'help'
 	puts "Usage : ./dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]"
 else
-	# coefApprentissage = coefDD[ARGV[0]]
-	# fatigue = ARGV[1].to_i
-	# jaugeCourante = ARGV[2].to_i
-	# jaugeVoulue = ARGV[3].to_i
-	# coefApprentissage = coefDD[ARGV[0]]
+	coefApprentissage = coefDD[ARGV[0]]
+	fatigue = ARGV[1].to_i
+	jaugeCourante = ARGV[2].to_i
+	jaugeVoulue = ARGV[3].to_i
+	coefApprentissage = coefDD[ARGV[0]]
 
-	puts "Quelle est la couleur de la dd ? (en minuscule, sans accent, et entre guillemets (\"...\") si elle est bicolore)"
-	coefApprentissage = coefDD[gets.chomp]
-	print "Quel est son niveau de fatigue ? "
-	fatigue = gets.chomp.to_i
-	print  "Quel est le niveau de la jauge à modifier ? "
-	jaugeCourante = gets.chomp.to_i
-	print "Et a quel niveau tu veux qu'il soit ? "
-	jaugeVoulue = gets.chomp.to_i
+	# puts "Quelle est la couleur de la dd ? (en minuscule, sans accent, et entre guillemets (\"...\") si elle est bicolore)"
+	# coefApprentissage = coefDD[gets.chomp]
+	# print "Quel est son niveau de fatigue ? "
+	# fatigue = gets.chomp.to_i
+	# print  "Quel est le niveau de la jauge à modifier ? "
+	# jaugeCourante = gets.chomp.to_i
+	# print "Et a quel niveau tu veux qu'il soit ? "
+	# jaugeVoulue = gets.chomp.to_i
 
 	objet = Objet.new()
 	drago = Dragodinde.new(coefApprentissage, jaugeCourante, fatigue)

@@ -8,6 +8,7 @@ require 'open-uri'
 require 'configatron'
 require_relative 'config.rb'
 require_relative 'insultotron.rb'
+require_relative 'dd.rb'
 
 # This statement creates a bot with the specified token and application ID. After this line, you can add events to the
 # created bot, and eventually run it.
@@ -148,6 +149,12 @@ bot.command(:insulte, description: "Renvoie une insulte générée")  do |event,
 	end
 end
 # }}}
+
+# dragodinde ==>
+bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup d'une dd", usage: "dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]")  do |event, couleur, fatigue, jaugeCourant, jaugeVoulue|
+	dd = Dragodinde.new(couleur, fatigue, jaugeCourant, jaugeVoulue)
+end
+# <==
 
 # Réponses aux messages {{{
 bot.message(containing: ['(╯°□°）╯︵ ┻━┻', '(ﾉಥ益ಥ）ﾉ﻿ ┻━┻', '(ノಠ益ಠ)ノ彡┻━┻']) do |event|
