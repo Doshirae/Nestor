@@ -160,7 +160,7 @@ end
 
 bot.message(containing: /Mi+chel/i) do |event|
 	event.respond "Oui, c'est moi"
-	sleep(15)
+	sleep(1)
 	event.respond "Michel, forever"
 	sleep(1)
 	event.respond "Je suis le veilleur"
@@ -173,10 +173,6 @@ end
 
 bot.message(content: /rt/i) do |event|
 	event.respond "#{event.content}"
-end
-
-bot.message(containing: ["❤", "<3"]) do |event|
-	event.respond "❤ ❤ ❤ "
 end
 
 bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
