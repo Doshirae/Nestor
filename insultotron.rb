@@ -2,47 +2,27 @@
 class Insulte
 	attr_reader :insulte, :mode
 	def initialize(mode)
-		@mode = mode
-		case mode
+		@insulte = case mode
 		when nil
-			createDefault
+			"Espece d#{Insulte.animal} #{Insulte.adjectif} #{Insulte.lieu}"
 		when "fort"
-			createDefault
-			@insulte = @insulte.upcase
+			"Espece d#{Insulte.animal} #{Insulte.adjectif} #{Insulte.lieu}".upcase
 		when "kaaris"
-			createKaaris
+			"P#{"U"*rand(10..100)}T#{"E"*rand(3..20)}#{"U"*rand(10..100)}H"
 		when "martine"
-			createMartine
+			salope = "SALO"
+			rand(25..100).times do |jsp|
+				salope += (rand(0..1) %2 == 0) ? "o" : "O"
+			end
+			salope += "PE"
+			"#{salope}"
 		when "haddock"
-			createHaddock
+			"#{Insulte.insultesHaddock}"
 		end
 	end
 
 	def to_s
 		@insulte
-	end
-
-
-	def createDefault
-		@insulte = "Espece d#{Insulte.animal} #{Insulte.adjectif} #{Insulte.lieu}"
-	end
-
-	def createKaaris
-		@insulte = "P#{"U"*rand(10..100)}T#{"E"*rand(3..20)}#{"U"*rand(10..100)}H"
-	end
-
-	def createMartine
-		salope = "SALO"
-		rand(25..100).times do |jsp|
-			salope += (rand(0..1) %2 == 0) ? "o" : "O"
-		end
-		salope += "PE"
-		@insulte = "#{salope}"
-	end
-
-
-	def createHaddock
-		@insulte = "#{Insulte.insultesHaddock}"
 	end
 
 	# animal ==>
