@@ -14,15 +14,15 @@ require_relative 'dd.rb'
 # created bot, and eventually run it.
 bot = Discordrb::Commands::CommandBot.new token: configatron.token, client_id: 261161348124114945, prefix: '!'
 
-# Commandes invite {{{
+# Commandes invite ==>
 bot.command(:invite, chain_usable: false) do |event|
 # This simply sends the bot's invite URL, without any specific permissions,
 # to the channel.
 	event.bot.invite_url
 end
-# }}}
+# <==
 
-# Commande random {{{
+# Commande random ==>
 bot.command(:random, min_args: 0, max_args: 2, description: 'Generates a random number between 0 and 1, 0 and max or min and max.', usage: 'random [min/max] [max]') do |_event, min, max|
 	# The `if` statement returns one of multiple different things based on the condition. Its return value
 	# is then returned from the block and sent to the channel
@@ -34,18 +34,18 @@ bot.command(:random, min_args: 0, max_args: 2, description: 'Generates a random 
 		rand
 	end
 end
-# }}}
+# <==
 
-# Commande ping {{{
+# Commande ping ==>
 bot.command :ping do |event|
 	# The `respond` method returns a `Message` object, which is stored in a variable `m`. The `edit` method is then called
 	# to edit the message with the time difference between when the event was received and after the message was sent.
 	m = event.respond('Pong!')
 	m.edit "Pong! `#{(Time.now - event.timestamp).round(2)}s`"
 end
-# }}}
+# <==
 
-# Commande dtc {{{
+# Commande dtc ==>
 bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou une au hasard", usage: 'dtc [numéro_quote]')  do |event, num_quote|
 	if num_quote
 		# File.open("latestQuote.txt", 'r') do |file,latestQuote| 
@@ -68,9 +68,9 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 		"http://danstonchat.com/#{random}.html"
 	end
 end
-# }}}
+# <==
 
-# Commandes pokemon {{{
+# Commandes pokemon ==>
 bot.command(:pokelink, description: "Renvoie une page poképedia")  do |event, *args|
 	nom_pokemon = args.join('%20')
 	event.respond "http://www.pokepedia.fr/#{nom_pokemon}"
@@ -116,37 +116,33 @@ bot.command(:poke, description: "Renvoie le nom, les évolutions, et les talents
 	end
 	event << ""
 end
-# }}}
+# <==
 
-# Commande xkcd {{{
-
+# Commande xkcd ==>
 bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, *args|
 	# "https://xkcd.com/#{num}" page = Nokogiri::HTML(open("https://xkcd.com/#{num}"))
 	isInt = Integer(args[0]) rescue nil
 	str = (args.size > 1) ? "Trop d'arguments, très cher" : (isInt) ? "https://xkcd.com/#{num}" : "Pas un entier"
 	event.respond(str)
 end
+# <==
 
-# }}}
-
-# insulte {{{
+# insulte ==>
 bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, mode|
-	event.respond("")
-	insulte = Insulte.new(mode)
-	event.respond(insulte.dire)
+	event.respond("#{Insulte.new(mode)}")
 end
-# }}}
+# <==
 
-# dragodinde {{{
-bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup d'une dd", usage: "dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]")  do |event, couleur, fatigue, jaugeCourant, jaugeVoulue|
+# dragodinde ==>
+bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup d'une dd", usage: "dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]")  do |event, couleur, fatigue, jaugeCourant, jaugeVoulue|# {{{# }}}# {{{# }}}
 	drago = Dragodinde.new(couleur, fatigue, jaugeCourant)
 	objet = Objet.new
 	main = Main.new(drago, objet)
 	event.respond("#{main.temps(jaugeVoulue)}")
 end
-# }}}
+# <==
 
-# Réponses aux messages {{{
+# Réponses aux messages ==>
 bot.message(containing: ['(╯°□°）╯︵ ┻━┻', '(ﾉಥ益ಥ）ﾉ﻿ ┻━┻', '(ノಠ益ಠ)ノ彡┻━┻']) do |event|
 	event.respond '┬─┬ノ( º _ ºノ )'
 end
@@ -175,7 +171,7 @@ end
 bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
 	event.respond "Oui monsieur, bien monsieur, je pars me flageller monsieur"
 end
-# }}}
+# <==
 
 # command taht mention
 # bot.mention do |event|
@@ -185,4 +181,4 @@ end
 # end
 
 bot.run
-# vim:foldmethod=marker:foldlevel=0
+# vim:foldmethod=marker:foldmarker=\=\=>,<\=\=:foldlevel=0
