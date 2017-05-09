@@ -131,33 +131,20 @@ end
 
 # insulte {{{
 bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, mode|
-	insulte = Insulte.new()
-	case mode
-	when "fort"
-		event.respond(insulte.dire().upcase)
-	when "kaaris"
-		event.respond("P#{"U"*rand(10..100)}T#{"E"*rand(3..20)}#{"U"*rand(10..100)}H")
-	when "martine"
-		salope = "SALO"
-		rand(25..100).times do |jsp|
-			salope += (rand(0..1) %2 == 0) ? "o" : "O"
-		end
-		salope += "PE"
-		event.respond(salope)
-	else
-		event.respond(insulte.dire())
-	end
+	event.respond("")
+	insulte = Insulte.new(mode)
+	event.respond(insulte.dire)
 end
 # }}}
 
-# dragodinde ==>
+# dragodinde {{{
 bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup d'une dd", usage: "dd.rb [couleur dd] [fatigue] [niveau jauge courant] [niveau jauge voulu]")  do |event, couleur, fatigue, jaugeCourant, jaugeVoulue|
 	drago = Dragodinde.new(couleur, fatigue, jaugeCourant)
 	objet = Objet.new
 	main = Main.new(drago, objet)
 	event.respond("#{main.temps(jaugeVoulue)}")
 end
-# <==
+# }}}
 
 # Réponses aux messages {{{
 bot.message(containing: ['(╯°□°）╯︵ ┻━┻', '(ﾉಥ益ಥ）ﾉ﻿ ┻━┻', '(ノಠ益ಠ)ノ彡┻━┻']) do |event|
