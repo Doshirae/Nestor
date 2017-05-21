@@ -128,8 +128,13 @@ end
 # <==
 
 # insulte ==>
-bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, mode|
-	event.respond("#{Insulte.new(mode)}")
+bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, action|
+	if action == "add"
+		lol
+	else
+		mode = action
+		event.respond("#{Insulte.new(mode)}")
+	end
 end
 # <==
 

@@ -27,7 +27,7 @@ class Insulte
 
 	def createMartine
 		salope = "SALO"
-		rand(25..100).times do |_|# (so it makes a cup :D
+		rand(25..100).times do |_|# (so it makes a cup :D)
 			salope += (rand(0..1) %2 == 0) ? "o" : "O"
 		end
 		salope += "PE"
