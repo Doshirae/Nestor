@@ -16,8 +16,8 @@ bot = Discordrb::Commands::CommandBot.new token: configatron.token, client_id: 2
 
 # Commandes invite ==>
 bot.command(:invite, chain_usable: false) do |event|
-# This simply sends the bot's invite URL, without any specific permissions,
-# to the channel.
+	# This simply sends the bot's invite URL, without any specific permissions,
+	# to the channel.
 	event.bot.invite_url
 end
 # <==
@@ -52,7 +52,7 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 		# 	latestQuote = file.gets
 		# end
 		# if num_quote <= latestQuote
-			"http://danstonchat.com/#{num_quote}.html"
+		"http://danstonchat.com/#{num_quote}.html"
 		# else
 		# 	"La quote existe pas fdp"
 		# end
@@ -121,6 +121,7 @@ end
 # Commande xkcd ==>
 bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, *args|
 	# "https://xkcd.com/#{num}" page = Nokogiri::HTML(open("https://xkcd.com/#{num}"))
+	# TODO : Recuperer l'image sur le site, et l'upload sur le chat
 	isInt = Integer(args[0]) rescue nil
 	str = (args.size > 1) ? "Trop d'arguments, très cher" : (isInt) ? "https://xkcd.com/#{num}" : "Pas un entier"
 	event.respond(str)
@@ -177,6 +178,16 @@ bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
 	event.respond "Oui monsieur, bien monsieur, je pars me flageller monsieur"
 end
 # <==
+
+bot.command(:eval, help_available: false) do |event, *code|
+	# break unless event.user.id == 322417582424588289 # Replace number with your ID
+
+	begin
+		eval code.join(' ')
+	rescue
+		'An error occurred 😞'
+	end
+end
 
 # command taht mention
 # bot.mention do |event|

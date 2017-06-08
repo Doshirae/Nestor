@@ -8,18 +8,18 @@ Dragodinde	dd.rb	/^class Dragodinde$/;"	c
 Insulte	insultotron.rb	/^class Insulte$/;"	c
 Main	dd.rb	/^class Main$/;"	c
 Objet	dd.rb	/^class Objet$/;"	c
-adjectif	insultotron.rb	/^	def self.adjectif$/;"	F	class:Insulte.createMartine
-animal	insultotron.rb	/^	def self.animal$/;"	F	class:Insulte.createMartine
+adjectif	insultotron.rb	/^	def self.adjectif$/;"	F	class:Insulte
+animal	insultotron.rb	/^	def self.animal$/;"	F	class:Insulte
 bonus	dd.rb	/^	def bonus(resistanceObjet)$/;"	f
 createDefault	insultotron.rb	/^	def createDefault$/;"	f	class:Insulte
-createHaddock	insultotron.rb	/^	def createHaddock$/;"	f	class:Insulte.createMartine
+createHaddock	insultotron.rb	/^	def createHaddock$/;"	f	class:Insulte
 createKaaris	insultotron.rb	/^	def createKaaris$/;"	f	class:Insulte
 createMartine	insultotron.rb	/^	def createMartine$/;"	f	class:Insulte
 initialize	dd.rb	/^	def initialize(couleur, fatigue, nivCourantJauge)$/;"	f	class:Dragodinde
 initialize	dd.rb	/^	def initialize(drago, objet, frequence=2)$/;"	f	class:Main
 initialize	dd.rb	/^	def initialize(resistance=600, efficacite=30)$/;"	f	class:Objet
 initialize	insultotron.rb	/^	def initialize(mode)$/;"	f	class:Insulte
-insultesHaddock	insultotron.rb	/^	def self.insultesHaddock$/;"	F	class:Insulte.createMartine
-lieu	insultotron.rb	/^	def self.lieu$/;"	F	class:Insulte.createMartine
+insultesHaddock	insultotron.rb	/^	def self.insultesHaddock$/;"	F	class:Insulte
+lieu	insultotron.rb	/^	def self.lieu$/;"	F	class:Insulte
 temps	dd.rb	/^	def temps(jaugeVoulue)$/;"	f	class:Main
 to_s	insultotron.rb	/^	def to_s$/;"	f	class:Insulte
