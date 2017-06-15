@@ -180,12 +180,12 @@ end
 # <==
 
 bot.command(:eval, help_available: false) do |event, *code|
-	# break unless event.user.id == 322417582424588289 # Replace number with your ID
+	break unless event.channel.server.id == 169135745141964800 # Replace number with your ID
 
 	begin
 		eval code.join(' ')
 	rescue
-		'An error occurred 😞'
+		"Il semblerait qu'une erreur soit apparue, très cher"
 	end
 end
 
