@@ -174,7 +174,7 @@ bot.message(content: /rt/i) do |event|
 	event.respond "#{event.content}"
 end
 
-bot.message(containing: [/tg /i, /ta gueule/i]) do |event|
+bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
 	event.send_temp "Oui monsieur, bien monsieur, je pars me flageller monsieur", 5
 end
 # <==
