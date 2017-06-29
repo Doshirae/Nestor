@@ -9,6 +9,7 @@ require 'configatron'
 require_relative 'config.rb'
 require_relative 'insultotron.rb'
 require_relative 'dd.rb'
+require_relative 'commandes.rb'
 
 # This statement creates a bot with the specified token and application ID. After this line, you can add events to the
 # created bot, and eventually run it.
@@ -24,15 +25,7 @@ end
 
 # Commande random ==>
 bot.command(:random, min_args: 0, max_args: 2, description: 'Generates a random number between 0 and 1, 0 and max or min and max.', usage: 'random [min/max] [max]') do |_event, min, max|
-	# The `if` statement returns one of multiple different things based on the condition. Its return value
-	# is then returned from the block and sent to the channel
-	if max
-		rand(min.to_i..max.to_i)
-	elsif min
-		rand(0..min.to_i)
-	else
-		rand
-	end
+	random(min, max)
 end
 # <==
 
@@ -133,8 +126,7 @@ bot.command(:insulte, description: "Renvoie une insulte générée")  do |event,
 	if action == "add"
 		lol
 	else
-		mode = action
-		event.respond("#{Insulte.new(mode)}")
+		insulte(action)
 	end
 end
 # <==
