@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby 
 
-require 'rubygems'
-require 'discordrb'
-require 'mechanize'
-require 'nokogiri'
-require 'open-uri'
-require 'configatron'
+require 'bundler/setup'
+Bundler.require(:default)
+
 require_relative 'config.rb'
 require_relative 'insultotron.rb'
 require_relative 'dd.rb'
