@@ -1,5 +1,4 @@
 # Fonctionnalités à ajouter
-
 - Finir la v2 de DTC
 - Finir poke
 - Coder la fonctionnalité musique de Bonobot
