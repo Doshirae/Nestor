@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require 'bundler/setup'
 Bundler.require(:default)
 
@@ -142,15 +141,15 @@ bot.command(:strawpoll, description: "Créer un strawpoll", usage: "!strawpoll [
 	if choices.empty?
 		event.respond "Mais enfin ! Quelle curieuse idée de faire un sondage sans le moindre choix... On se croirait en Russie"
 	else
-	choices = choices.join(' ').split(' | ')
-	if choices[0] =~ /q\s.*/
-		question = choices.shift[2..-1]
+		choices = choices.join(' ').split(' | ')
+		if choices[0] =~ /q\s.*/
+			question = choices.shift[2..-1]
+		end
+		question ||= "Poll de #{event.user.name}"
+		json = HTTParty.post("https://strawpoll.me/api/v2/polls", body: {title: "#{question}", options: choices}.to_json).body
+		id = JSON.parse(json)["id"]
+		event.respond "Voici pour vous, mon cher\nhttps://strawpoll.me/#{id}"
 	end
-	question ||= "Poll de #{event.user.name}"
-	json = HTTParty.post("https://strawpoll.me/api/v2/polls", body: {title: "#{question}", options: choices}.to_json).body
-	id = JSON.parse(json)["id"]
-	event.respond "Voici pour vous, mon cher\nhttps://strawpoll.me/#{id}"
-end
 end
 # <==
 
