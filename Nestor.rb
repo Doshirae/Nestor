@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 Bundler.require(:default)
+
 require_relative 'config.rb'
 require_relative 'insultotron.rb'
 require_relative 'dd.rb'
