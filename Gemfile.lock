@@ -16,6 +16,8 @@ GEM
     ffi (1.9.18)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     mechanize (2.7.5)
       domain_name (~> 0.5, >= 0.5.1)
       http-cookie (~> 1.0)
@@ -29,6 +31,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.2.0)
+    multi_xml (0.6.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     netrc (0.11.0)
@@ -58,8 +61,9 @@ PLATFORMS
 DEPENDENCIES
   configatron
   discordrb
+  httparty
   mechanize
   nokogiri
 
 BUNDLED WITH
-   1.15.3
+   1.15.4

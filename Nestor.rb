@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
 
 require 'bundler/setup'
 Bundler.require(:default)
@@ -12,7 +12,7 @@ require_relative 'commandes.rb'
 # created bot, and eventually run it.
 bot = Discordrb::Commands::CommandBot.new token: configatron.token, client_id: 261161348124114945, prefix: '!'
 
-# Commandes invite ==>
+# invite ==>
 bot.command(:invite, chain_usable: false) do |event|
 	# This simply sends the bot's invite URL, without any specific permissions,
 	# to the channel.
@@ -20,13 +20,13 @@ bot.command(:invite, chain_usable: false) do |event|
 end
 # <==
 
-# Commande random ==>
+# random ==>
 bot.command(:random, min_args: 0, max_args: 2, description: 'Generates a random number between 0 and 1, 0 and max or min and max.', usage: 'random [min/max] [max]') do |_event, min, max|
 	random(min, max)
 end
 # <==
 
-# Commande ping ==>
+# ping ==>
 bot.command :ping do |event|
 	# The `respond` method returns a `Message` object, which is stored in a variable `m`. The `edit` method is then called
 	# to edit the message with the time difference between when the event was received and after the message was sent.
@@ -35,10 +35,10 @@ bot.command :ping do |event|
 end
 # <==
 
-# Commande dtc ==>
+# dtc ==>
 bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou une au hasard", usage: 'dtc [numéro_quote]')  do |event, num_quote|
 	if num_quote
-		# File.open("latestQuote.txt", 'r') do |file,latestQuote| 
+		# File.open("latestQuote.txt", 'r') do |file,latestQuote|
 		# 	latestQuote = file.gets
 		# end
 		# if num_quote <= latestQuote
@@ -60,7 +60,7 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 end
 # <==
 
-# Commandes pokemon ==>
+# pokemon ==>
 bot.command(:pokelink, description: "Renvoie une page poképedia")  do |event, *args|
 	nom_pokemon = args.join('%20')
 	event.respond "http://www.pokepedia.fr/#{nom_pokemon}"
@@ -82,7 +82,7 @@ bot.command(:poke, description: "Renvoie le nom, les évolutions, et les talents
 	# typesHTML = page.css('table tr th:contains("Types") + td a') # just got to figure out how to extract the title
 	# types = typesHTML.filter("title")
 
-	# talents : 
+	# talents :
 	talents = page.css("table tr th:contains('Talents') + td a").text.split(/(?=[A-Z])/)
 	talents[-2] += " (#{talents[-1]})"
 	talents.pop
@@ -108,7 +108,7 @@ bot.command(:poke, description: "Renvoie le nom, les évolutions, et les talents
 end
 # <==
 
-# Commande xkcd ==>
+# xkcd ==>
 bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, *args|
 	# "https://xkcd.com/#{num}" page = Nokogiri::HTML(open("https://xkcd.com/#{num}"))
 	# TODO : Recuperer l'image sur le site, et l'upload sur le chat
@@ -134,6 +134,34 @@ bot.command(:dd, min_args: 4, max_args: 4, description: "Donne l'heure de recup 
 	objet = Objet.new
 	main = Main.new(drago, objet)
 	event.respond("#{main.temps(jaugeVoulue)}")
+end
+# <==
+
+# strawpoll ==>
+bot.command(:strawpoll, description: "Créer un strawpoll", usage: "!strawpoll [q <question>] | choix1 | choix2 | choix3 | ...")  do |event, *choices|# {{{# }}}# {{{# }}}
+	if choices.empty?
+		event.respond "Mais enfin ! Quelle curieuse idée de faire un sondage sans le moindre choix... On se croirait en Russie"
+	else
+	choices = choices.join(' ').split(' | ')
+	if choices[0] =~ /q\s.*/
+		question = choices.shift[2..-1]
+	end
+	question ||= "Poll de #{event.user.name}"
+	json = HTTParty.post("https://strawpoll.me/api/v2/polls", body: {title: "#{question}", options: choices}.to_json).body
+	id = JSON.parse(json)["id"]
+	event.respond "Voici pour vous, mon cher\nhttps://strawpoll.me/#{id}"
+end
+end
+# <==
+
+# eval ==>
+bot.command(:eval, help_available: false) do |event, *code|
+	break unless event.channel.server.id == 169135745141964800 # Replace number with your ID
+	begin
+		eval code.join(' ')
+	rescue
+		"Il semblerait qu'une erreur soit apparue, très cher"
+	end
 end
 # <==
 
@@ -168,16 +196,6 @@ bot.message(containing: [/tg/i, /ta gueule/i]) do |event|
 end
 # <==
 
-bot.command(:eval, help_available: false) do |event, *code|
-	break unless event.channel.server.id == 169135745141964800 # Replace number with your ID
-
-	begin
-		eval code.join(' ')
-	rescue
-		"Il semblerait qu'une erreur soit apparue, très cher"
-	end
-end
-
 # command taht mention
 # bot.mention do |event|
 # 	# The `pm` method is used to send a private message (also called a DM or direct message) to the user who sent the
@@ -186,4 +204,3 @@ end
 # end
 
 bot.run
-# vim:foldmethod=marker:foldmarker=\=\=>,<\=\=:foldlevel=0

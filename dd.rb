@@ -124,7 +124,7 @@ class Main
 		mtn.min = "0#{mtn.min}".to_i if mtn.min < 10
 		pret = mtn + tempsSeconde
 		pret.min = "0#{pret.min}".to_i if pret.min < 10
-		
+
 		return "Il est actuellement #{mtn.hour}h#{mtn.min} et la dragodinde sera prete vers #{pret.hour}h#{pret.min}"
 	end
 end
@@ -146,6 +146,6 @@ if __FILE__ == $0
 
 		puts main.temps(jaugeVoulue)
 	end
-end 
+end
 
 # vim:foldmethod=marker:foldmarker=\=\=>,<\=\=:foldlevel=0
