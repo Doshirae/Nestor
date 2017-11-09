@@ -140,7 +140,7 @@ end
 # strawpoll ==>
 bot.command(:strawpoll,
 						description: "Créer un strawpoll",
-						usage: "!strawpoll [q[m] <question>] | choix1 | choix2 | choix3 | ...\nq <question> -> la question devient <question> (aucune question si le champ n'est pas là)\nqm <question> -> question devient <question> et active le choix multiple des réponses"
+						usage: "!strawpoll [q[m] <question>] | choix1 | choix2 | choix3 | ...\nq <question> → la question devient <question> (aucune question si le champ n'est pas là)\nqm <question> → question devient <question> et active le choix multiple des réponses"
 					 )  do |event, *choices|
 	if choices.empty?
 		event.respond "Mais enfin ! Quelle curieuse idée de faire un sondage sans le moindre choix... On se croirait en Russie"
