@@ -138,16 +138,23 @@ end
 # <==
 
 # strawpoll ==>
-bot.command(:strawpoll, description: "Créer un strawpoll", usage: "!strawpoll [q <question>] | choix1 | choix2 | choix3 | ...")  do |event, *choices|# {{{# }}}# {{{# }}}
+bot.command(:strawpoll,
+						description: "Créer un strawpoll",
+						usage: "!strawpoll [q[m] <question>] | choix1 | choix2 | choix3 | ...\nq <question> -> la question devient <question> (aucune question si le champ n'est pas là)\nqm <question> -> question devient <question> et active le choix multiple des réponses"
+					 )  do |event, *choices|
 	if choices.empty?
 		event.respond "Mais enfin ! Quelle curieuse idée de faire un sondage sans le moindre choix... On se croirait en Russie"
 	else
 		choices = choices.join(' ').split(' | ')
+		multi = false
 		if choices[0] =~ /q\s.*/
 			question = choices.shift[2..-1]
+		elsif choices[0] =~ /qm\s.*/
+			question = choices.shift[2..-1]
+			multi = true
 		end
 		question ||= "Poll de #{event.user.name}"
-		json = HTTParty.post("https://strawpoll.me/api/v2/polls", body: {title: "#{question}", options: choices}.to_json).body
+		json = HTTParty.post("https://strawpoll.me/api/v2/polls", body: {title: "#{question}", options: choices, multi: multi}.to_json).body
 		id = JSON.parse(json)["id"]
 		event.respond "Voici pour vous, mon cher\nhttps://strawpoll.me/#{id}"
 	end
