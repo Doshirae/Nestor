@@ -45,3 +45,9 @@ def doggo
         file.write HTTParty.get("https://www.randomdoggiegenerator.com/randomdoggie.php")
     end
 end
+
+def kitten
+    File.open("kitten.png", 'w') do |file|
+        file.write HTTParty.get("http://www.randomkittengenerator.com/cats/rotator.php")
+    end
+end
