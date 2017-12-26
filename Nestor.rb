@@ -145,9 +145,16 @@ end
 # <==
 
 # doggo ==>
-bot.command(:doggo) do |event| # , description: "Créer un strawpoll", usage: "!strawpoll [q[m] <question>] | choix1 | choix2 | choix3 | ...\nq <question> → la question devient <question> (aucune question si le champ n'est pas là)\nqm <question> → question devient <question> et active le choix multiple des réponses")  do |event, *choices|
+bot.command(:doggo) do |event|
     doggo()
     event.channel.send_file File.new('doggo.png')
+end
+# <==
+
+# kitten ==>
+bot.command(:kitten) do |event|
+    kitten()
+    event.channel.send_file File.new('kitten.png')
 end
 # <==
 
