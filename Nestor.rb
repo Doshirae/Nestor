@@ -113,12 +113,10 @@ end
 bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, num|
 	# "https://xkcd.com/#{num}" page = Nokogiri::HTML(open("https://xkcd.com/#{num}"))
 	# TODO : Recuperer l'image sur le site, et l'upload sur le chat
-	if num.nil? or num.to_i == num
-		`curl -o xkcd.png $(curl https://xkcd.com/#{num}/ | grep "Image URL (for hotlinking/embedding):" | cut -d : -f 2-)`
-		event.respond "https://xkcd.com/#{num}"
+		url = xkcd(num)
+		event.respond url
 		event.channel.send_file File.new('xkcd.png')
 		`rm xkcd.png`
-	end
 end
 # <==
 
@@ -149,16 +147,17 @@ end
 
 # doggo ==>
 bot.command(:doggo) do |event|
-    doggo()
-    event.channel.send_file File.new('doggo.png')
+	doggo()
+	event.channel.send_file File.new('doggo.png')
 	`rm doggo.png`
 end
 # <==
 
 # kitten ==>
 bot.command(:kitten) do |event|
-    kitten()
-    event.channel.send_file File.new('kitten.png')
+	kitten()
+	event.channel.send_file File.new('kitten.png')
+	`rm kitten.png`
 end
 # <==
 

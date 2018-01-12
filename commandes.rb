@@ -51,3 +51,13 @@ def kitten
         file.write HTTParty.get("http://www.randomkittengenerator.com/cats/rotator.php")
     end
 end
+
+def xkcd(num=nil)
+	if num =~ /\d+/ or num.nil? # soit un nombre soit rien du tout
+		`curl -o xkcd.png $(curl https://xkcd.com/#{num}/ | grep "Image URL (for hotlinking/embedding):" | cut -d : -f 2-)`
+
+		"https://xkcd.com/#{num}"
+	else
+		"Il me faut soit un entier, soit rien, très cher"
+	end
+end
