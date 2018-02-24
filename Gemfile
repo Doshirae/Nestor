@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 source "https://rubygems.org"
-#gem 'rubygems'
 gem 'discordrb'
 gem 'mechanize'
-gem 'nokogiri'
-#gem 'open-uri'
 gem 'configatron'
 gem 'httparty'
 
