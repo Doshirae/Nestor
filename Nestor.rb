@@ -120,7 +120,7 @@ bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, num|
 end
 # <==
 
-bot.command(:dl) do |event, img|
+bot.command(:dl) do |event, uri|
 	require "net/http"
 	if idx = uri =~ /jpe?g|png|gif$/
 		ext = uri[idx..-1]
