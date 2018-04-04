@@ -120,6 +120,16 @@ bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, num|
 end
 # <==
 
+bot.command(:dl) do |event, img|
+	if img =~ /(jpe?g|png|gif)$/
+		`curl -o img.png #{img}`
+		event.channel.send_file File.new('img.png')
+		`rm img.png`
+	else
+		"Je ne peux pas poster un fichier qui ne soit pas une image, enfin !"
+	end
+end
+
 # insulte ==>
 bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, action|
 	if action == "add"

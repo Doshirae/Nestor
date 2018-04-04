@@ -61,3 +61,7 @@ def xkcd(num=nil)
 		"Il me faut soit un entier, soit rien, très cher"
 	end
 end
+
+def dl(img)
+	`curl -o img.png #{img}`
+end
