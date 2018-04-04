@@ -130,7 +130,7 @@ bot.command(:dl) do |event, uri|
 			event.channel.send_file File.new("img.#{ext}")
 			`rm img.#{ext}`
 		else
-			"L'url n'est pas correcte"
+			"Cette image n'existe pas. Erreur 404, bolosse."
 		end
 	else
 		"Je ne peux pas poster un fichier qui ne soit pas une image, enfin !"
