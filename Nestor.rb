@@ -121,10 +121,17 @@ end
 # <==
 
 bot.command(:dl) do |event, img|
-	if img =~ /(jpe?g|png|gif)$/
-		`curl -o img.png #{img}`
-		event.channel.send_file File.new('img.png')
-		`rm img.png`
+	require "net/http"
+	if idx = uri =~ /jpe?g|png|gif$/
+		ext = uri[idx..-1]
+		response = Net::HTTP.get_response(URI(uri))
+		if response.code == 200
+			open("img.#{ext}", 'w+') { |f| f.write(response.body) }
+			event.channel.send_file File.new("img.#{ext}")
+			`rm img.#{ext}`
+		else
+			"L'url n'est pas correcte"
+		end
 	else
 		"Je ne peux pas poster un fichier qui ne soit pas une image, enfin !"
 	end
