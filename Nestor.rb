@@ -29,8 +29,6 @@ end
 
 # ping ==>
 bot.command :ping do |event|
-	# The `respond` method returns a `Message` object, which is stored in a variable `m`. The `edit` method is then called
-	# to edit the message with the time difference between when the event was received and after the message was sent.
 	m = event.respond('Pong!')
 	m.edit "Pong! `#{(Time.now - event.timestamp).round(2)}s`"
 end
@@ -114,12 +112,12 @@ bot.command(:xkcd, description: "Renvoie une page XKCD")  do |event, num|
 	# "https://xkcd.com/#{num}" page = Nokogiri::HTML(open("https://xkcd.com/#{num}"))
 	# TODO : Recuperer l'image sur le site, et l'upload sur le chat
 		url = xkcd(num)
-		event.respond url
-		event.channel.send_file File.new('xkcd.png')
+		event.channel.send_file File.new('xkcd.png'), caption: url
 		`rm xkcd.png`
 end
 # <==
 
+# dl ==>
 bot.command(:dl) do |event, uri|
 	require "net/http"
 	if idx = uri =~ /jpe?g|png|gif$/
@@ -136,6 +134,7 @@ bot.command(:dl) do |event, uri|
 		"Je ne peux pas poster un fichier qui ne soit pas une image, enfin !"
 	end
 end
+# <==
 
 # insulte ==>
 bot.command(:insulte, description: "Renvoie une insulte générée")  do |event, action|
