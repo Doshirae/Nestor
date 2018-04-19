@@ -15,11 +15,18 @@ createDefault	insultotron.rb	/^	def createDefault$/;"	f	class:Insulte
 createHaddock	insultotron.rb	/^	def createHaddock$/;"	f	class:Insulte
 createKaaris	insultotron.rb	/^	def createKaaris$/;"	f	class:Insulte
 createMartine	insultotron.rb	/^	def createMartine$/;"	f	class:Insulte
+dl	commandes.rb	/^def dl(img)$/;"	f
+doggo	commandes.rb	/^def doggo$/;"	f
 initialize	dd.rb	/^	def initialize(couleur, fatigue, nivCourantJauge)$/;"	f	class:Dragodinde
 initialize	dd.rb	/^	def initialize(drago, objet, frequence=2)$/;"	f	class:Main
 initialize	dd.rb	/^	def initialize(resistance=600, efficacite=30)$/;"	f	class:Objet
 initialize	insultotron.rb	/^	def initialize(mode)$/;"	f	class:Insulte
+insulte	commandes.rb	/^def insulte(mode = nil)$/;"	f
 insultesHaddock	insultotron.rb	/^	def self.insultesHaddock$/;"	F	class:Insulte
+kitten	commandes.rb	/^def kitten$/;"	f
 lieu	insultotron.rb	/^	def self.lieu$/;"	F	class:Insulte
+random	commandes.rb	/^def random(*args)$/;"	f
+strawpoll	commandes.rb	/^def strawpoll(name, *choices)$/;"	f
 temps	dd.rb	/^	def temps(jaugeVoulue)$/;"	f	class:Main
 to_s	insultotron.rb	/^	def to_s$/;"	f	class:Insulte
+xkcd	commandes.rb	/^def xkcd(num=nil)$/;"	f
