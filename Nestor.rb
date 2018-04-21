@@ -58,8 +58,10 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 	end
 end
 # <==
+
 # lenny ==>
 bot.command(:lenny, description: "Lenny sous la main")  do |event|
+	event.message.delete
 	"( ͡° ͜ʖ ͡° )"
 end
 # <==
