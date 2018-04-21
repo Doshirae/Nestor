@@ -58,6 +58,11 @@ bot.command(:dtc, description: "Renvoie une quote avec un certain numéro, ou un
 	end
 end
 # <==
+# lenny ==>
+bot.command(:lenny, description: "Lenny sous la main")  do |event|
+	"( ͡° ͜ʖ ͡° )"
+end
+# <==
 
 # pokemon ==>
 bot.command(:pokelink, description: "Renvoie une page poképedia")  do |event, *args|
