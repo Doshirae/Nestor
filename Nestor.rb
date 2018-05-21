@@ -197,7 +197,7 @@ end
 
 # eval ==>
 bot.command(:eval, help_available: false) do |event, *code|
-	break unless event.channel.server.id == $DOSHI # Replace number with your ID
+	break unless event.user.id == $DOSHI # Replace number with your ID
 	begin
 		eval code.join(' ')
 	rescue
