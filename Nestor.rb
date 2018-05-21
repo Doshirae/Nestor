@@ -7,7 +7,11 @@ require_relative 'config.rb'
 require_relative 'insultotron.rb'
 require_relative 'dd.rb'
 require_relative 'commandes.rb'
-$DOSHI = 164258114068021248
+$ALLOWED = {
+	doshi: 164258114068021248,
+	nico: 447878477044121620,
+	hugo: 447867234371764249
+}
 
 # This statement creates a bot with the specified token and application ID. After this line, you can add events to the
 # created bot, and eventually run it.
@@ -188,7 +192,7 @@ end
 bot.command(:exit, help_available: false) do |event|
 	# This is a check that only allows a user with a specific ID to execute this command. Otherwise, everyone would be
 	# able to shut your bot down whenever they wanted.
-	break unless event.user.id == $DOSHI # Replace number with your ID
+	break unless event.user.id == $ALLOWED[:doshi]
 
 	bot.send_message(event.channel.id, 'À bientôt j\'espère')
 	exit
@@ -197,7 +201,7 @@ end
 
 # eval ==>
 bot.command(:eval, help_available: false) do |event, *code|
-	break unless event.user.id == $DOSHI # Replace number with your ID
+	break unless $ALLOWED.values.include? event.user.id
 	begin
 		eval code.join(' ')
 	rescue
